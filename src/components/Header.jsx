@@ -1,10 +1,14 @@
-import { Youtube, Facebook, Search, Heart, ShoppingCart, User, Globe, Phone } from "lucide-react";
+import { useState } from "react";
+import { Youtube, Facebook, Search, Heart, ShoppingCart, User, Globe, Phone, Sandwich, Lollipop, Apple, Carrot, Plug } from "lucide-react";
 import { Link } from "react-router-dom";
 import mainlogo2 from "../assets/mainlogo2.png";
 
 const Header = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <div className="w-full">
+      {/* Top Bar */}
       <div className="bg-[#629D23] h-10 flex items-center justify-between px-6 text-white text-sm">
         <p className="text-xs sm:text-sm">Welcome to our Organic store EkoMart!</p>
         <div className="flex items-center gap-2">
@@ -15,17 +19,27 @@ const Header = () => {
           <Phone size={16} />
         </div>
       </div>
+
+      {/* Logo + Search + Icons */}
       <div className="flex flex-col sm:flex-row items-center justify-between py-4 px-6 bg-white gap-4">
         <div className="flex items-center justify-center sm:justify-start w-full sm:w-auto">
-          <img src={mainlogo2} alt="Codeship-logo" className="object-contain w-[180px] sm:w-[200px]"/>
+          <img src={mainlogo2} alt="Codeship-logo" className="object-contain w-[180px] sm:w-[200px]" />
         </div>
+
         <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
+          {/* Search Bar */}
           <div className="flex items-center border border-[#E6E6E6] rounded-md overflow-hidden w-full sm:w-[350px] md:w-[450px]">
-            <input type="text" placeholder="Search for products, categories or brands" className="px-3 py-2 w-full outline-none text-sm text-[#6E777D]"/>
+            <input
+              type="text"
+              placeholder="Search for products, categories or brands"
+              className="px-3 py-2 w-full outline-none text-sm text-[#6E777D]"
+            />
             <button className="flex items-center justify-center gap-1 bg-[#629D23] px-4 py-2 text-white font-medium whitespace-nowrap">
               Search <Search size={16} />
             </button>
           </div>
+
+          {/* Wishlist, Cart, Account */}
           <div className="flex items-center cursor-pointer gap-2 sm:gap-3">
             <button className="relative flex items-center gap-1 border px-3 py-2 rounded-md text-sm">
               <Heart size={16} />
@@ -34,6 +48,7 @@ const Header = () => {
                 0
               </span>
             </button>
+
             <button className="relative flex items-center gap-1 border px-3 py-2 rounded-md text-sm">
               <ShoppingCart size={16} />
               <span className="hidden sm:inline">Cart</span>
@@ -41,6 +56,7 @@ const Header = () => {
                 0
               </span>
             </button>
+
             <button className="flex items-center gap-1 border px-3 py-2 rounded-md text-sm">
               <User size={16} />
               <span className="hidden sm:inline">Account</span>
@@ -48,16 +64,50 @@ const Header = () => {
           </div>
         </div>
       </div>
+
+      {/* Category + Nav + Offer */}
       <div className="flex flex-col sm:flex-row items-center justify-between bg-[#F8F8F8] px-6 py-3 gap-3">
-        <button className="flex items-center gap-2 bg-[#629D23] text-white px-4 py-2 rounded-md w-full sm:w-auto justify-center">
-          ☰ All Categories ▼
-        </button>
+        {/* All Categories Dropdown */}
+        <div className="relative inline-block text-left w-full sm:w-auto">
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="flex items-center gap-2 bg-[#629D23] text-white px-4 py-2 rounded-md w-full sm:w-auto justify-center"
+          >
+            ☰ All Categories ▼
+          </button>
+
+          {isOpen && (
+            <div className="absolute left-0 mt-2 w-full sm:w-[200px] bg-white border border-gray-500 rounded-md shadow-lg text-gray-700 z-20">
+              <ul className="py-1 text-sm">
+                <li className="flex items-center gap-2 px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                  <Sandwich color="gray" fill="yellow" size={20} /> <span>Snacks</span>
+                </li>
+                <li className="flex items-center gap-2 px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                  <Apple color="gray" fill="red" size={20} /> <span>Fruits</span>
+                </li>
+                <li className="flex items-center gap-2 px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                  <Carrot color="gray" fill="orange" size={20} /> <span>Vegetable</span>
+                </li>
+                <li className="flex items-center gap-2 px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                  <Lollipop color="gray" fill="pink" size={20} /> <span>Sweets</span>
+                </li>
+                <li className="flex items-center gap-2 px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                  <Plug color="gray" fill="black" size={20} /> <span>Electronics</span>
+                </li>
+              </ul>
+            </div>
+          )}
+        </div>
+
+        {/* Navigation Links */}
         <nav className="flex flex-wrap gap-4 sm:gap-6 text-[#333] justify-center">
           <Link to="/home" className="hover:text-[#629D23]">Home</Link>
           <Link to="/support" className="hover:text-[#629D23]">Support</Link>
           <Link to="/shop" className="hover:text-[#629D23]">Shop ▼</Link>
           <Link to="/contact" className="hover:text-[#629D23]">Contact</Link>
         </nav>
+
+        {/* Offer Section */}
         <div className="bg-[#629D23] text-white px-4 py-2 rounded-tr-lg rounded-bl-lg font-medium text-center w-full sm:w-auto">
           Get 30% Discount Now{" "}
           <span className="bg-white text-[#629D23] px-2 py-1 ml-2 rounded-md text-sm">
