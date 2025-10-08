@@ -8,7 +8,7 @@ const Header = () => {
 
   return (
     <div className="w-full">
-      {/* Top Bar */}
+
       <div className="bg-[#629D23] h-10 flex items-center justify-between px-6 text-white text-sm">
         <p className="text-xs sm:text-sm">Welcome to our Organic store EkoMart!</p>
         <div className="flex items-center gap-2">
@@ -20,14 +20,12 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Logo + Search + Icons */}
       <div className="flex flex-col sm:flex-row items-center justify-between py-4 px-6 bg-white gap-4">
         <div className="flex items-center justify-center sm:justify-start w-full sm:w-auto">
           <img src={mainlogo2} alt="Codeship-logo" className="object-contain w-[180px] sm:w-[200px]" />
         </div>
 
         <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
-          {/* Search Bar */}
           <div className="flex items-center border border-[#E6E6E6] rounded-md overflow-hidden w-full sm:w-[350px] md:w-[450px]">
             <input
               type="text"
@@ -39,7 +37,6 @@ const Header = () => {
             </button>
           </div>
 
-          {/* Wishlist, Cart, Account */}
           <div className="flex items-center cursor-pointer gap-2 sm:gap-3">
             <button className="relative flex items-center gap-1 border px-3 py-2 rounded-md text-sm">
               <Heart size={16} />
@@ -65,9 +62,8 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Category + Nav + Offer */}
       <div className="flex flex-col sm:flex-row items-center justify-between bg-[#F8F8F8] px-6 py-3 gap-3">
-        {/* All Categories Dropdown */}
+
         <div className="relative inline-block text-left w-full sm:w-auto">
           <button
             onClick={() => setIsOpen(!isOpen)}
@@ -99,7 +95,6 @@ const Header = () => {
           )}
         </div>
 
-        {/* Navigation Links */}
         <nav className="flex flex-wrap gap-4 sm:gap-6 text-[#333] justify-center">
           <Link to="/home" className="hover:text-[#629D23]">Home</Link>
           <Link to="/support" className="hover:text-[#629D23]">Support</Link>
@@ -107,7 +102,6 @@ const Header = () => {
           <Link to="/contact" className="hover:text-[#629D23]">Contact</Link>
         </nav>
 
-        {/* Offer Section */}
         <div className="bg-[#629D23] text-white px-4 py-2 rounded-tr-lg rounded-bl-lg font-medium text-center w-full sm:w-auto">
           Get 30% Discount Now{" "}
           <span className="bg-white text-[#629D23] px-2 py-1 ml-2 rounded-md text-sm">
