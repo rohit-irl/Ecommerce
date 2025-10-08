@@ -1,5 +1,17 @@
 import React, { useRef, useState, useEffect } from "react";
 import danonki from "../assets/danonki.png";
+import cable from "../assets/cable.png";
+import iron from "../assets/iron.png";
+import goggle from "../assets/goggle.png";
+import block from "../assets/block.png";
+import bag from "../assets/bag.png";
+import ptoy from "../assets/ptoy.png";
+import speaker from "../assets/speaker.png";
+import extension from "../assets/extension.png";
+import craft from "../assets/craft.png";
+import kappliance from "../assets/kappliance.png";
+import unocard from "../assets/unocard.png";
+import earbuds from "../assets/earbuds.png";
 
 import { ShoppingCart, ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -12,7 +24,7 @@ const grocerys = [
   { image: danonki, text: "Details business makes your profit", subtext: "500g Pack", price: "$90.00", mrp: "$36.00" },
 ];
 
-const Pshop = () => {
+const Shop = () => {
   const sliderRef = useRef(null);
   const [showLeft, setShowLeft] = useState(false);
   const [showRight, setShowRight] = useState(true);
@@ -20,21 +32,16 @@ const Pshop = () => {
   const checkScroll = () => {
     if (!sliderRef.current) return;
     const { scrollLeft, scrollWidth, clientWidth } = sliderRef.current;
-
     setShowLeft(scrollLeft > 0);
     setShowRight(scrollLeft + clientWidth < scrollWidth - 5);
   };
 
   const slideLeft = () => {
-    if (sliderRef.current) {
-      sliderRef.current.scrollBy({ left: -250, behavior: "smooth" });
-    }
+    if (sliderRef.current) sliderRef.current.scrollBy({ left: -250, behavior: "smooth" });
   };
 
   const slideRight = () => {
-    if (sliderRef.current) {
-      sliderRef.current.scrollBy({ left: 250, behavior: "smooth" });
-    }
+    if (sliderRef.current) sliderRef.current.scrollBy({ left: 250, behavior: "smooth" });
   };
 
   useEffect(() => {
@@ -47,11 +54,15 @@ const Pshop = () => {
   }, []);
 
   return (
-    <div className="container mx-auto px-4 mt-5">
+    <div className="container mx-auto px-4 mt-5 space-y-6">
+      
+      {/* Grocery Slider Section */}
       <div className="bg-[#f5ecff] p-6 rounded-md">
         <div className="flex flex-col lg:flex-row gap-6 items-center">
           <div className="bg-[#8A2BE2]/20 flex flex-col justify-center items-start text-left rounded-md p-6 w-full lg:w-1/3">
-            <span className="bg-[#6D1D9C] text-white font-bold pl-4 pr-16 py-1 inline-block text-start" style={{clipPath: "polygon(0% 0%, 90% 0, 100% 50%, 90% 100%, 0% 100%)",}}>Lorem ipsum</span>
+            <span className="bg-[#6D1D9C] text-white font-bold pl-4 pr-16 py-1 inline-block text-start" style={{ clipPath: "polygon(0% 0%, 90% 0, 100% 50%, 90% 100%, 0% 100%)" }}>
+              Lorem ipsum
+            </span>
             <h2 className="text-3xl lg:text-4xl font-bold text-[#6D1D9C] mt-4 leading-snug">
               Lorem ipsum <br /> dolor sit amet <br /> consectetur.
             </h2>
@@ -59,6 +70,7 @@ const Pshop = () => {
               Shop Now
             </button>
           </div>
+
           <div className="relative flex-1 w-full rounded-md p-4 overflow-hidden">
             {showLeft && (
               <button onClick={slideLeft} className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-[#629D23] text-white p-2 rounded-full shadow">
@@ -73,20 +85,14 @@ const Pshop = () => {
             <div ref={sliderRef} className="flex gap-4 overflow-x-auto scroll-smooth no-scrollbar">
               {grocerys.map((val, index) => (
                 <div key={index} className="min-w-[200px] p-3 flex flex-col bg-[#F5F6F7] rounded-md shadow-sm">
-                  <div className="flex justify-center items-center h-[120px]  rounded-md">
+                  <div className="flex justify-center items-center h-[120px] rounded-md">
                     <img src={val.image} alt="product" className="h-35 py-2 object-contain"/>
                   </div>
-                  <div className="mt-2 text-sm font-bold text-[#2C3C28]">
-                    {val.text}
-                  </div>
+                  <div className="mt-2 text-sm font-bold text-[#2C3C28]">{val.text}</div>
                   <div className="text-[#6E777D] text-xs">{val.subtext}</div>
                   <div className="flex items-center gap-2 mt-1">
-                    <span className="text-[#DC2626] text-lg font-bold">
-                      {val.price}
-                    </span>
-                    <span className="text-[#6E777D] line-through text-sm">
-                      {val.mrp}
-                    </span>
+                    <span className="text-[#DC2626] text-lg font-bold">{val.price}</span>
+                    <span className="text-[#6E777D] line-through text-sm">{val.mrp}</span>
                   </div>
                   <div className="mt-auto flex justify-between items-center">
                     <select className="border text-sm rounded-sm px-1 py-0.5">
@@ -104,8 +110,35 @@ const Pshop = () => {
           </div>
         </div>
       </div>
+
+      {/* Fixed 2nd Section */}
+      <div className="bg-[#F2FFEF] flex flex-col lg:flex-row p-6 rounded-md gap-6">
+        {/* Left Text Section */}
+        <div className="flex flex-col justify-center items-start text-left rounded-md p-6 w-full lg:w-2/5">
+          <span className="bg-[#1D686A] text-white font-bold pl-4 pr-16 py-1 inline-block whitespace-nowrap" style={{ clipPath: "polygon(0% 0%, 90% 0, 100% 50%, 90% 100%, 0% 100%)" }}>
+            Lorem ipsum
+          </span>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#1D686A] mt-4 leading-snug">
+            Lorem ipsum <br /> dolor sit amet <br /> consectetur.
+          </h2>
+          <button className="bg-[#1D686A] text-white px-5 py-2 mt-6 rounded-md font-medium shadow hover:bg-[#145253] transition">
+            Shop Now
+          </button>
+        </div>
+
+        {/* Right Image Grid Section */}
+        <div className="flex flex-wrap justify-center lg:justify-start gap-4 w-full lg:w-3/5">
+          {[cable, iron, goggle, block, bag, ptoy, speaker, extension, craft, kappliance, unocard, earbuds].map(
+            (img, idx) => (
+              <div key={idx} className="w-[80px] sm:w-[100px] md:w-[120px] flex justify-center items-center p-2 bg-white rounded-md shadow hover:scale-105 transition-transform">
+                <img src={img} alt={`product-${idx}`} className="max-h-[70px] sm:max-h-[100px] md:max-h-[120px] object-contain"/>
+              </div>
+            )
+          )}
+        </div>
+      </div>
     </div>
   );
 };
 
-export default Pshop;
+export default Shop;
