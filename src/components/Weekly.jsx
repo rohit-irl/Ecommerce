@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -10,7 +10,7 @@ import crisps from "../assets/crisps.png";
 import danonki from "../assets/danonki.png";
 import pasta from "../assets/pasta.png";
 import gchicken from "../assets/gchicken.png";
-import { ShoppingCart, ChevronLeft, ChevronRight } from "lucide-react";
+import { ShoppingCart, ChevronLeft, ChevronRight, Heart } from "lucide-react";
 
 const weeklys = [
   { image: thouse, text: "Details Profitable business makes your profit", subtext: "500g Pack", price: "$29.00", mrp: "$36.00" },
@@ -24,6 +24,15 @@ const weeklys = [
 const Weekly = () => {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
+  const [wishlist, setWishlist] = useState([]);
+
+  const handleWishlistToggle = (index) => {
+    setWishlist((prev) =>
+      prev.includes(index)
+        ? prev.filter((item) => item !== index)
+        : [...prev, index]
+    );
+  };
 
   return (
     <div className="container mx-auto px-4 mt-5">
@@ -62,9 +71,30 @@ const Weekly = () => {
           }}>
           {weeklys.map((val, index) => (
             <SwiperSlide key={index}>
-              <div className="p-3 flex flex-col bg-[#F5F6F7] h-full rounded-md">
+              <div className="relative p-3 flex flex-col bg-[#F5F6F7] h-full rounded-md">
+                <button
+                  onClick={() => handleWishlistToggle(index)}
+                  className={`absolute top-2 right-2 border rounded-full p-2 shadow-sm transition-colors ${
+                    wishlist.includes(index)
+                      ? "bg-red-100 border-red-400"
+                      : "bg-white border-gray-200 hover:bg-gray-100"
+                  }`}
+                >
+                  <Heart
+                    size={16}
+                    className={`transition-transform ${
+                      wishlist.includes(index)
+                        ? "fill-red-500 text-red-500 scale-110"
+                        : "text-gray-500"
+                    }`}
+                  />
+                </button>
                 <div className="flex justify-center items-center h-[120px] bg-[#F5F6F7] rounded-md">
-                  <img src={val.image} alt="product" className="h-35 py-1 object-contain" />
+                  <img
+                    src={val.image}
+                    alt="product"
+                    className="h-35 py-1 object-contain"
+                  />
                 </div>
                 <div className="mt-2 text-xl font-semibold text-[#2C3C28]">{val.text}</div>
                 <div className="text-[#6E777D] text-xs">{val.subtext}</div>
